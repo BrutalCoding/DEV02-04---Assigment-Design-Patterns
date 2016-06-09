@@ -38,10 +38,15 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Component.cs" />
+    <Compile Include="EmptyButton.cs" />
     <Compile Include="FormLoader.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GUIElement.cs" />
     <Compile Include="GUIElementFactory.cs" />
     <Compile Include="GUIElementsFactory.cs" />
+    <Compile Include="Label.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace assignmentOP4
 {
-    class ButtonType : ElementType
+    class ButtonType : IElementType
     {
         Vector2 position;
         SpriteFont font;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace assignmentOP4
 {
-    class EmptyButtonType : ElementType
+    class EmptyButtonType : IElementType
     {
         Vector2 p;
         Texture2D t;

@@ -6,23 +6,34 @@ using System.Threading.Tasks;
 
 namespace assignmentOP4
 {
-    class GUIElementsFactoryToGUIElements
+    class GUIElementsFactoryToGUIElements : IIterator<GUIElement>
     {
         List<IOption<GUIElement>> factory;
-
-        int index;
-
         IOption<GUIElementFactory> currentFactory;
+        int index = -1;
 
-        public GUIElementsFactoryToGUIElements(GUIElementsFactoryToGUIElements ef)
+        public GUIElementsFactoryToGUIElements(GUIElementsFactory ef)
         {
-
+            currentFactory = ef.GetNext();
+            factory.Add(currentFactory.Visit<IOption<GUIElement>>(() => new None<GUIElement>(), x => new Some<GUIElement>(x.Load())));
+            //.Visit<GUIElement>(new None<GUIElement>(), new Some<GUIElement>();
+            //IOption<GUIElement> item
+            
         }
 
         public IOption<GUIElement> GetNext()
         {
-            return factory[0];
+            if (index >= factory.Count() - 1)
+            {
+                Reset();
+            }
+            index++;
+            return factory[index];
         }
 
+        public void Reset()
+        {
+            index = -1;
+        }
     }
 }

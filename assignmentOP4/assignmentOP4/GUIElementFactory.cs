@@ -8,9 +8,9 @@ namespace assignmentOP4
 {
     class GUIElementFactory
     {
-        private ElementType type;
+        private IElementType type;
 
-        public GUIElementFactory(ElementType t)
+        public GUIElementFactory(IElementType t)
         {
             this.type = t;
         }

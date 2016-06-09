@@ -6,24 +6,29 @@ using System.Threading.Tasks;
 
 namespace assignmentOP4
 {
-    class GUIElementsFactory<T> : IIterator<T>
+    class GUIElementsFactory : IIterator<GUIElementFactory>
     {
-        private List<ElementType> elements;
-        private int index;
+        private List<IElementType> elements = new List<IElementType>();
+        private int index = -1;
 
-        public GUIElementsFactory(List<ElementType> elements)
+        public GUIElementsFactory(List<IElementType> elements)
         {
             this.elements = elements;
         }
 
-        public IOption<T> GetNext()
+        public IOption<GUIElementFactory> GetNext()
         {
-            throw new NotImplementedException();
+            if(index >= elements.Count() - 1)
+            {
+                return new None<GUIElementFactory>();
+            }
+            index++;
+            return new Some<GUIElementFactory>(new GUIElementFactory(elements[index]));
         }
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            index = -1;
         }
     }
 }

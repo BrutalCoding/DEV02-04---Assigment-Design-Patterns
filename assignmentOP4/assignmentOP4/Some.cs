@@ -8,7 +8,12 @@ namespace assignmentOP4
 {
     class Some<T> : IOption<T>
     {
-        T v;
+        T value;
+
+        public Some(T value)
+        {
+            this.value = value;
+        }
 
         public bool IsNone()
         {
@@ -22,7 +27,7 @@ namespace assignmentOP4
 
         public U Visit<U>(Func<U> OnNone, Func<T, U> OnSome)
         {
-            return OnSome(this.v);
+            return OnSome(this.value);
         }
     }
 }

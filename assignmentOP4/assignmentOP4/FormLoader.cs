@@ -8,15 +8,15 @@ namespace assignmentOP4
 {
     class FormLoader<T>
     {
-        private List<ElementType> elements;
-        public FormLoader(List<ElementType> elements)
+        private List<IElementType> elements;
+        public FormLoader(List<IElementType> elements)
         {
             this.elements = elements;
         }
 
-        public GUIElementsFactory<T> Load()
+        public GUIElementsFactory Load()
         {
-            return new GUIElementsFactory<T>(elements);
+            return new GUIElementsFactory(elements);
         }
     }
 }

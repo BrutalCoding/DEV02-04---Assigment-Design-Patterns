@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace assignmentOP4
 {
-    class LabelType : ElementType
+    class LabelType : IElementType
     {
         Vector2 p;
         string t;

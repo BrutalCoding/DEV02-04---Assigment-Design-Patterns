@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace assignmentOP4
 {
-    class GUIElementsFactory<T> : Iterator<T>
+    class GUIElementsFactory<T> : IIterator<T>
     {
         private List<ElementType> elements;
         private int index;
@@ -16,7 +16,7 @@ namespace assignmentOP4
             this.elements = elements;
         }
 
-        public Option<T> GetNext()
+        public IOption<T> GetNext()
         {
             throw new NotImplementedException();
         }

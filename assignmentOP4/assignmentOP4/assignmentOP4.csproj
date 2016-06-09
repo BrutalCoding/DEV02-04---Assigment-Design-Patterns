@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Button.cs" />
     <Compile Include="ButtonType.cs" />
+    <Compile Include="FormLoader.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="ElementType.cs" />
     <Compile Include="EmptyButton.cs" />
@@ -49,12 +50,12 @@
     <Compile Include="GUIElementFactory.cs" />
     <Compile Include="GUIElementsFactory.cs" />
     <Compile Include="GUIElementsFactoryToGUIElements.cs" />
-    <Compile Include="Iterator.cs" />
+    <Compile Include="IIterator.cs" />
     <Compile Include="Label.cs" />
     <Compile Include="LabelType.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="None.cs" />
-    <Compile Include="Option.cs" />
+    <Compile Include="IOption.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Some.cs" />

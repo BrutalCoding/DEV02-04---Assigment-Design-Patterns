@@ -8,18 +8,18 @@ namespace assignmentOP4
 {
     class GUIElementsFactoryToGUIElements
     {
-        List<Option<GUIElement>> factory;
+        List<IOption<GUIElement>> factory;
 
         int index;
 
-        Option<GUIElementFactory> currentFactory;
+        IOption<GUIElementFactory> currentFactory;
 
         public GUIElementsFactoryToGUIElements(GUIElementsFactoryToGUIElements ef)
         {
 
         }
 
-        public Option<GUIElement> GetNext()
+        public IOption<GUIElement> GetNext()
         {
             return factory[0];
         }

@@ -17,7 +17,6 @@ namespace assignmentOP4
         {
             this.text = t;
             this.font = f;
-
         }
     }
 }

@@ -8,7 +8,7 @@ namespace assignmentOP4
 {
     class Main<T>
     {
-        private Iterator<GUIElement> controls;
+        private IIterator<GUIElement> controls;
         private GUIElementsFactory<T> controlFactories;
 
         public void Update(GameTime gameTime)

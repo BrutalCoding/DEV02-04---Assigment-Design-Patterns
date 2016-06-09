@@ -21,7 +21,7 @@ namespace assignmentOP4
 
         public GUIElement Visit(Func<EmptyButton, Label, Action, GUIElement> OnButton, Func<Vector2, Texture2D, GUIElement> OnEmptyButton, Func<Vector2, string, SpriteFont, GUIElement> OnLabel)
         {
-            throw new NotImplementedException();
+            return OnEmptyButton(this.p, this.t);
         }
     }
 }

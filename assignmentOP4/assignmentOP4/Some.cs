@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace assignmentOP4
 {
-    class Some<T> : Option<T>
+    class Some<T> : IOption<T>
     {
         T v;
 
         public bool IsNone()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public bool IsSome()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public U Visit<U>(Func<U> OnNone, Func<T, U> OnSome)
         {
-            throw new NotImplementedException();
+            return OnSome(this.v);
         }
     }
 }

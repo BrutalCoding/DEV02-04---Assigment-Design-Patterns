@@ -38,10 +38,13 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Components\None.cs" />
+    <Compile Include="Components\Some.cs" />
     <Compile Include="Elements\ElementButton.cs" />
     <Compile Include="Elements\ElementLabel.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Interfaces\IControl.cs" />
+    <Compile Include="Interfaces\IOption.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

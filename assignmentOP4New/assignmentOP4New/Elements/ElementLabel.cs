@@ -22,28 +22,14 @@ namespace assignmentOP4New.Elements
 
         public SpriteFont font
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return labelFont; }
+            set { labelFont = value; }
         }
 
         public Vector2 position
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get {return labelPosition;}
+            set { labelPosition = value; }
         }
 
         public string Text
@@ -59,7 +45,7 @@ namespace assignmentOP4New.Elements
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch)
         {
             throw new NotImplementedException();
         }

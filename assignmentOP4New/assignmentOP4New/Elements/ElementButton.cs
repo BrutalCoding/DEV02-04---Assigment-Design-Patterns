@@ -11,48 +11,53 @@ namespace assignmentOP4New.Elements
 {
     class ElementButton : IControl
     {
+        private Action btnAction;
+        private SpriteFont btnFont;
+        private Vector2 btnPos;
+        private Texture2D btnTexture;
+        private string btnText;
+
+        public ElementButton()
+        {
+            
+        }
+
+        public ElementButton(Action action)
+        {
+            this.btnAction = action;
+        }
+
+        public Texture2D texture
+        {
+            get { return btnTexture; }
+            set { btnTexture = value; }
+        }
+
         public SpriteFont font
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return btnFont; }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set { btnFont = value; }
         }
 
         public Vector2 position
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return btnPos; }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set { btnPos = value; }
         }
 
         public string Text
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return btnText; }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set { btnText = value; }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            spriteBatch.Draw(btnTexture, btnPos);
+            spriteBatch.DrawString(btnFont, btnText, new Vector2(btnPos.X + 100, btnPos.Y + 30), Color.Black);
         }
 
         public void Update(GameTime gameTime)

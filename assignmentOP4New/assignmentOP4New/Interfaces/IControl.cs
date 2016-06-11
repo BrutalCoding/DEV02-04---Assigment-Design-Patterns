@@ -14,6 +14,6 @@ namespace assignmentOP4New.Interfaces
         SpriteFont font { get; set; }
         string Text { get; set; }
         void Update(GameTime gameTime);
-        void Draw(GameTime gameTime);
+        void Draw(SpriteBatch spriteBatch);
     }
 }

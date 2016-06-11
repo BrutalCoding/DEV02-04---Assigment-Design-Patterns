@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using assignmentOP4New.Elements;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,13 +11,21 @@ namespace assignmentOP4New
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private SpriteFont spriteFont;
+        private ElementButton myFirstButton;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            //Init button
+            myFirstButton = new ElementButton();
+            
+            myFirstButton.Text = "Click me";
+            myFirstButton.position = Vector2.Zero;
         }
 
         /// <summary>
@@ -39,7 +49,9 @@ namespace assignmentOP4New
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            spriteFont = Content.Load<SpriteFont>("Arial");
+            myFirstButton.texture = Content.Load<Texture2D>("dev4-practical-button");
+            myFirstButton.font = spriteFont;
             // TODO: use this.Content to load your game content here
         }
 
@@ -74,9 +86,10 @@ namespace assignmentOP4New
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            myFirstButton.Draw(spriteBatch);
             // TODO: Add your drawing code here
-
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

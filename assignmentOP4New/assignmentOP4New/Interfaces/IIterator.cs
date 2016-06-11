@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace assignmentOP4New.Interfaces
 {
-    interface IOption<T>
+    interface IIterator<T>
     {
-        U Visit<U>(Func<U> OnNone, Func<T, U> OnSome);
-        bool IsNone();
-        bool IsSome();
+        IOption<T> GetNext();
+        void Reset();
     }
 }

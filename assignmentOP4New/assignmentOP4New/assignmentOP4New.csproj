@@ -41,9 +41,11 @@
     <Compile Include="Components\None.cs" />
     <Compile Include="Components\Some.cs" />
     <Compile Include="Elements\ElementButton.cs" />
+    <Compile Include="Elements\ElementFactory.cs" />
     <Compile Include="Elements\ElementLabel.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Interfaces\IControl.cs" />
+    <Compile Include="Components\Control.cs" />
+    <Compile Include="Interfaces\IIterator.cs" />
     <Compile Include="Interfaces\IOption.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

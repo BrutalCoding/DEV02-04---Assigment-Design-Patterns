@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using assignmentOP4New.Components;
 using assignmentOP4New.Elements;
+using assignmentOP4New.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -15,17 +19,15 @@ namespace assignmentOP4New
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
         private ElementButton myFirstButton;
-
+        private ElementLabel myFirstLabel;
+        private ElementFactory ef;
+        private List<Control> bla;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            //Init button
-            myFirstButton = new ElementButton();
-            
-            myFirstButton.Text = "Click me";
-            myFirstButton.position = Vector2.Zero;
+            bla = new List<Control>();
+            ef = new ElementFactory(bla);
         }
 
         /// <summary>
@@ -50,8 +52,10 @@ namespace assignmentOP4New
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteFont = Content.Load<SpriteFont>("Arial");
-            myFirstButton.texture = Content.Load<Texture2D>("dev4-practical-button");
-            myFirstButton.font = spriteFont;
+            myFirstButton = new ElementButton(Vector2.Zero, spriteFont, "Click me", Content.Load<Texture2D>("dev4-practical-button"));
+            myFirstLabel = new ElementLabel(Vector2.Zero, spriteFont, "Im a label");
+            bla.Add(myFirstButton);
+            bla.Add(myFirstLabel);
             // TODO: use this.Content to load your game content here
         }
 
@@ -87,7 +91,14 @@ namespace assignmentOP4New
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            myFirstButton.Draw(spriteBatch);
+
+            IOption<Control> test1 = ef.GetNext();
+            while (test1.Visit(() => false, _ => true))
+            {
+                Control test = test1.Visit(() => default(Control), x => x);
+                test.Draw(spriteBatch);
+                test1 = ef.GetNext();
+            }
             // TODO: Add your drawing code here
             spriteBatch.End();
             base.Draw(gameTime);

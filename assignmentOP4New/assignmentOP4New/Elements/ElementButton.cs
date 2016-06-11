@@ -3,64 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using assignmentOP4New.Interfaces;
+using assignmentOP4New.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace assignmentOP4New.Elements 
 {
-    class ElementButton : IControl
+    class ElementButton : Control
     {
         private Action btnAction;
-        private SpriteFont btnFont;
-        private Vector2 btnPos;
         private Texture2D btnTexture;
+
+        private Vector2 btnPos;
+        private SpriteFont btnFont;
         private string btnText;
 
-        public ElementButton()
+        public ElementButton(Vector2 pos, SpriteFont font, string text, Texture2D texture)
         {
-            
+            this.btnPos = pos;
+            this.btnFont = font;
+            this.btnText = text;
+            this.btnTexture = texture;
         }
 
-        public ElementButton(Action action)
+        public ElementButton(Vector2 pos, SpriteFont font, string text, Texture2D texture, Action action)
         {
+            this.btnPos = pos;
+            this.btnFont = font;
+            this.btnText = text;
+            this.btnTexture = texture;
             this.btnAction = action;
         }
 
-        public Texture2D texture
-        {
-            get { return btnTexture; }
-            set { btnTexture = value; }
-        }
-
-        public SpriteFont font
-        {
-            get { return btnFont; }
-
-            set { btnFont = value; }
-        }
-
-        public Vector2 position
-        {
-            get { return btnPos; }
-
-            set { btnPos = value; }
-        }
-
-        public string Text
-        {
-            get { return btnText; }
-
-            set { btnText = value; }
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(btnTexture, btnPos);
             spriteBatch.DrawString(btnFont, btnText, new Vector2(btnPos.X + 100, btnPos.Y + 30), Color.Black);
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             throw new NotImplementedException();
         }

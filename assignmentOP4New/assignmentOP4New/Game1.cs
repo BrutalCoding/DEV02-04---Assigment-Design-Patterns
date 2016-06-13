@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using assignmentOP4New.Components;
 using assignmentOP4New.Elements;
+using assignmentOP4New.Factory;
 using assignmentOP4New.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,14 +21,16 @@ namespace assignmentOP4New
         private SpriteFont spriteFont;
         private ElementButton myFirstButton;
         private ElementLabel myFirstLabel;
-        private ElementFactory ef;
-        private List<Control> bla;
+        private GuiElementsFactory ef;
+        private GuiElementFactory elementFactory;
+        private List<Control> controls;
+        private IOption<GuiElementFactory> test1;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            bla = new List<Control>();
-            ef = new ElementFactory(bla);
+            controls = new List<Control>();
+            ef = new GuiElementsFactory(controls);
         }
 
         /// <summary>
@@ -54,8 +57,11 @@ namespace assignmentOP4New
             spriteFont = Content.Load<SpriteFont>("Arial");
             myFirstButton = new ElementButton(Vector2.Zero, spriteFont, "Click me", Content.Load<Texture2D>("dev4-practical-button"));
             myFirstLabel = new ElementLabel(Vector2.Zero, spriteFont, "Im a label");
-            bla.Add(myFirstButton);
-            bla.Add(myFirstLabel);
+            controls.Add(myFirstButton);
+            controls.Add(myFirstLabel);
+            
+            
+            //elementFactory = new GuiElementFactory(test1);
             // TODO: use this.Content to load your game content here
         }
 
@@ -92,13 +98,23 @@ namespace assignmentOP4New
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
 
-            IOption<Control> test1 = ef.GetNext();
+
+
+            test1 = ef.GetNext();
             while (test1.Visit(() => false, _ => true))
             {
-                Control test = test1.Visit(() => default(Control), x => x);
-                test.Draw(spriteBatch);
+                GuiElementFactory test = test1.Visit(() => default(GuiElementFactory), x => x);
+                test.MakeElement(spriteBatch);
                 test1 = ef.GetNext();
             }
+            //elementFactory.MakeElement(spriteBatch);
+            
+            //while (test1.Visit(() => false, _ => true))
+            //{
+            //    Control test = test1.Visit(() => default(Control), x => x);
+            //    test.Draw(spriteBatch);
+            //    test1 = ef.GetNext();
+            //}
             // TODO: Add your drawing code here
             spriteBatch.End();
             base.Draw(gameTime);

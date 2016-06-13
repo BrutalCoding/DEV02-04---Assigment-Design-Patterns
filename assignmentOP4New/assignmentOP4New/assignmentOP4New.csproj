@@ -41,7 +41,8 @@
     <Compile Include="Components\None.cs" />
     <Compile Include="Components\Some.cs" />
     <Compile Include="Elements\ElementButton.cs" />
-    <Compile Include="Elements\ElementFactory.cs" />
+    <Compile Include="Factory\GuiElementFactory.cs" />
+    <Compile Include="Factory\GuiElementsFactory.cs" />
     <Compile Include="Elements\ElementLabel.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Components\Control.cs" />

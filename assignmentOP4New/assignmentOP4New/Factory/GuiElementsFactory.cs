@@ -5,30 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using assignmentOP4New.Interfaces;
 using assignmentOP4New.Components;
+using assignmentOP4New.Factory;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace assignmentOP4New.Elements
 {
-    class ElementFactory : IIterator<Control>
+    class GuiElementsFactory : IIterator<GuiElementFactory>
     {
-        private List<Control> elementList = new List<Control>();
+        private List<Control> elementList;
         private int index = -1;
-        public ElementFactory(List<Control> listControl)
+        public GuiElementsFactory(List<Control> listControl)
         {
             elementList = listControl;
         }
         
-        public IOption<Control> GetNext()
+        public IOption<GuiElementFactory> GetNext()
         {
             index++;
             if (index <= elementList.Count() -1)
             {
-                return new Some<Control>(elementList[index]);
+                return new Some<GuiElementFactory>(new GuiElementFactory(new Some<Control>(elementList[index])));
             }
             else
             {
                 Reset();
-                return new None<Control>();
+                return new None<GuiElementFactory>();
             }
         }
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using assignmentOP4New.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace assignmentOP4New.Elements 
 {
@@ -17,7 +18,8 @@ namespace assignmentOP4New.Elements
         private Vector2 btnPos;
         private SpriteFont btnFont;
         private string btnText;
-
+        private MouseState msMouseState;
+        private int amountClicked;
         public ElementButton(Vector2 pos, SpriteFont font, string text, Texture2D texture)
         {
             this.btnPos = pos;
@@ -41,9 +43,44 @@ namespace assignmentOP4New.Elements
             spriteBatch.DrawString(btnFont, btnText, new Vector2(btnPos.X + 100, btnPos.Y + 30), Color.Black);
         }
 
-        public override void Update(GameTime gameTime)
+        
+        public override void Update(GameTime gameTime) //, int textureWidth, int textureHeight
         {
-            throw new NotImplementedException();
+            MouseState lastMouseState = msMouseState;
+            msMouseState = Mouse.GetState();
+           
+            if (msMouseState.X < btnPos.X + btnTexture.Width && 
+                msMouseState.X > btnPos.X && 
+                msMouseState.Y < btnPos.Y + btnTexture.Height && 
+                msMouseState.Y > btnPos.Y)
+            {
+                if (lastMouseState.LeftButton == ButtonState.Released && msMouseState.LeftButton == ButtonState.Pressed)
+                {
+                    amountClicked++;
+                    if (amountClicked <= 3)
+                    {
+                        this.btnPos.X += 50;
+                    }
+                    else
+                    {
+                        this.btnPos.X -= 50;
+                        if (amountClicked >= 6)
+                        {
+                            amountClicked = 0;
+                        }
+                    }
+                        
+                }
+            }
+            //if (msMouseState.X() < btnPos.X + Texture.Width &&
+            //        msMouseState.getMouseX() > buttonX &&
+            //        msMouseState.getMouseY() < buttonY + Texture.Height &&
+            //        msMouseState.getMouseY() > buttonY)
+            //{
+            //    return true;
+            //}
+            //return false;
+            
         }
     }
 }

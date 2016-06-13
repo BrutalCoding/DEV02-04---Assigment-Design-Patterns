@@ -25,12 +25,15 @@ namespace assignmentOP4New
         private GuiElementFactory elementFactory;
         private List<Control> controls;
         private IOption<GuiElementFactory> test1;
+        private GuiElementFactory test;
+        private GameTime gameTime;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             controls = new List<Control>();
             ef = new GuiElementsFactory(controls);
+            this.IsMouseVisible = true;
         }
 
         /// <summary>
@@ -55,8 +58,8 @@ namespace assignmentOP4New
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteFont = Content.Load<SpriteFont>("Arial");
-            myFirstButton = new ElementButton(Vector2.Zero, spriteFont, "Click me", Content.Load<Texture2D>("dev4-practical-button"));
-            myFirstLabel = new ElementLabel(Vector2.Zero, spriteFont, "Im a label");
+            myFirstButton = new ElementButton(new Vector2(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 4), spriteFont, "Click me", Content.Load<Texture2D>("dev4-practical-button"));
+            myFirstLabel = new ElementLabel(new Vector2(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 2), spriteFont, "Click the button to animate it.");
             controls.Add(myFirstButton);
             controls.Add(myFirstLabel);
             
@@ -85,8 +88,26 @@ namespace assignmentOP4New
                 Exit();
 
             // TODO: Add your update logic here
-
+            doDraw(false);
+            this.gameTime = gameTime;
             base.Update(gameTime);
+        }
+
+        private void doDraw(bool drawNow)
+        {
+            test1 = ef.GetNext();
+            while (test1.Visit(() => false, _ => true))
+            {
+                test = test1.Visit(() => default(GuiElementFactory), x => x);
+                if (drawNow)
+                    test.MakeElement(spriteBatch);
+                else
+                {
+                    test.DoUpdate(gameTime);
+                }
+                    
+                test1 = ef.GetNext();
+            }
         }
 
         /// <summary>
@@ -97,24 +118,7 @@ namespace assignmentOP4New
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-
-
-
-            test1 = ef.GetNext();
-            while (test1.Visit(() => false, _ => true))
-            {
-                GuiElementFactory test = test1.Visit(() => default(GuiElementFactory), x => x);
-                test.MakeElement(spriteBatch);
-                test1 = ef.GetNext();
-            }
-            //elementFactory.MakeElement(spriteBatch);
-            
-            //while (test1.Visit(() => false, _ => true))
-            //{
-            //    Control test = test1.Visit(() => default(Control), x => x);
-            //    test.Draw(spriteBatch);
-            //    test1 = ef.GetNext();
-            //}
+            doDraw(true);
             // TODO: Add your drawing code here
             spriteBatch.End();
             base.Draw(gameTime);
